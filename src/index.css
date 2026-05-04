@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0d0d0f; /* Ultra Dark Premium Background */
+  color: #e4e4e7;
+  padding: 3rem 0;
+  overflow-x: hidden; /* Prevents horizontal scroll */
+  width: 100%;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 0 1.5rem;
+}
+
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  /* Fluid font sizing: min 1.8rem, dynamic 5vw, max 3rem */
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #18181b;
+  border: 1px solid #27272a;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: #a1a1aa;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981; /* Emerald Green */
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulse-anim 2s infinite;
+}
+
+@keyframes pulse-anim {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Container & Grid Setup */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem; /* Reduced padding for more room on small screens */
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Safer min-width */
+  gap: 2rem;
+}
+
+/* Sleek Dark Minimal Card */
+.premium-card {
+  background: #121214;
+  border-radius: 12px;
+  border: 1px solid #27272a;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  border-color: #10b981; /* Minimal Green Hover Accent */
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.15);
+}
+
+/* Header Background - Dark Mint Accent instead of generic blue/pink */
+.card-header-bg {
+  height: 90px;
+  background: #18181b;
+  border-bottom: 1px solid #27272a;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  position: relative;
+}
+
+.badge-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.gender-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #121214;
+  background: #f4f4f5;
+}
+
+/* Avatar Fix */
+.profile-section {
+  text-align: center;
+  margin-top: -45px;
+  padding: 0 1.5rem;
+}
+
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #121214;
+  background-color: #27272a;
+  filter: grayscale(20%);
+  transition: filter 0.3s ease;
+}
+
+.premium-card:hover .profile-img {
+  filter: grayscale(0%);
+}
+
+.profile-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 12px;
+}
+
+.username {
+  color: #a1a1aa;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  word-break: break-all;
+}
+
+/* Details Section */
+.details-section {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  min-width: 0; /* Crucial for text-overflow to work in flex */
+}
+
+.info-row .icon {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.info-row .text {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Footer Button */
+.card-footer {
+  padding: 0 1.5rem 1.5rem;
+  margin-top: auto;
+}
+
+.connect-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #27272a;
+  background: transparent;
+  color: #f4f4f5;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.connect-btn:hover {
+  background: #e4e4e7;
+  color: #121214;
+  border-color: #e4e4e7;
+}
+
+/* Responsive adjustments for Tablets & Phones */
+@media (max-width: 768px) {
+  .card-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem; /* Super tight padding for 320px screens */
+  }
+  .card-grid {
+    /* The ultimate fix for grid blowouts: forces columns to never exceed parent width */
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+  .card-header-bg {
+    height: 80px;
+  }
+  .profile-section {
+    margin-top: -40px;
+  }
+  .status-badge {
+    white-space: normal;
+    text-align: center;
+  }
+}
