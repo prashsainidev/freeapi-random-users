@@ -28,11 +28,16 @@ If you just drop a `fetch()` call directly into a React component, your app will
 - **Implementation:** Wrapped fetch call inside `useEffect` with an empty dependency array `[]`.
 - **Result:** Fetches data once on page load, then stops.
 
-### Step 2: Demystifying the JSON
-Real-world APIs wrap data in complex metadata. I used `console.log(data)` to find the exact path: `data.data.data`.
-- **First data:** Network response.
-- **Second data:** Pagination object (pages, limits).
-- **Third data:** Actual array of 10 users.
+### Step 2: Demystifying the JSON Data
+Real-world APIs wrap data in complex metadata. When you hit `https://api.freeapi.app/api/v1/public/randomusers`, it doesn't just hand you an array. I used `console.log(data)` to find the exact path:
+- **`data.statusCode` & `data.message`**: Standard API success indicators.
+- **`data.data`**: The main payload object containing pagination details.
+- **`data.data.data`**: The actual array of 10 user objects. This is the goldmine.
+
+Each user object is deeply nested. To get a simple profile picture and name, I had to dig into:
+- `user.picture.large` (The image URL)
+- `user.name.first` and `user.name.last` (The name strings)
+- `user.location.city` and `user.location.country` (The location strings)
 
 ### Step 3: The React State
 I needed a secure place to hold those 10 users.
@@ -41,10 +46,10 @@ I needed a secure place to hold those 10 users.
 - **Result:** React dynamically controls the UI state.
 
 ### Step 4: The Loop
-I wrote the `.map()` loop manually to understand the core mechanics.
+I wrote the `.map()` loop manually to understand the core mechanics of rendering API arrays.
 - **Looping:** Iterated over the `users` state array.
 - **Rendering:** Returned a clean `<div className="premium-card">` for each user.
-- **Dynamic Data:** Injected `{user.name.first}` and `{user.picture.large}`.
+- **Dynamic Data Injection:** Injected the nested API data directly into the HTML using JSX variables like `{user.name.first}` and `{user.picture.large}`.
 
 ---
 
