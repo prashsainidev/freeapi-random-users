@@ -12,58 +12,58 @@ That was fine in 2024. But in 2026, building a generic UI isn't enough. You need
 
 Here is exactly how I built my very first API integration. Step by step.
 
----
+***
 
 ## Live Demo
 
 **[Experience the Live Application Here](https://freeapi-random-users-indol.vercel.app/)**
 
----
+***
 
 ## The 4 Steps to API Mastery
 
 ### Step 1: The Fetch (Without the Crash)
 If you just drop a `fetch()` call directly into a React component, your app will panic. It will request data in an infinite loop until your browser gives up.
-- **The fix:** Use `useEffect`.
-- **Implementation:** Wrapped fetch call inside `useEffect` with an empty dependency array `[]`.
-- **Result:** Fetches data once on page load, then stops.
+* **The fix:** Use `useEffect`.
+* **Implementation:** Wrapped fetch call inside `useEffect` with an empty dependency array `[]`.
+* **Result:** Fetches data once on page load, then stops.
 
 ### Step 2: Demystifying the JSON Data
 Real-world APIs wrap data in complex metadata. When you hit `https://api.freeapi.app/api/v1/public/randomusers`, it doesn't just hand you an array. I used `console.log(data)` to find the exact path:
-- **`data.statusCode` & `data.message`**: Standard API success indicators.
-- **`data.data`**: The main payload object containing pagination details.
-- **`data.data.data`**: The actual array of 10 user objects. This is the goldmine.
+* **`data.statusCode` & `data.message`**: Standard API success indicators.
+* **`data.data`**: The main payload object containing pagination details.
+* **`data.data.data`**: The actual array of 10 user objects. This is the goldmine.
 
 Each user object is deeply nested. To get a simple profile picture and name, I had to dig into:
-- `user.picture.large` (The image URL)
-- `user.name.first` and `user.name.last` (The name strings)
-- `user.location.city` and `user.location.country` (The location strings)
+* `user.picture.large` (The image URL)
+* `user.name.first` and `user.name.last` (The name strings)
+* `user.location.city` and `user.location.country` (The location strings)
 
 ### Step 3: The React State
 I needed a secure place to hold those 10 users.
-- **Initialization:** `useState([])`.
-- **Injection:** `setUsers(data.data.data)` inside the successful promise.
-- **Result:** React dynamically controls the UI state.
+* **Initialization:** `useState([])`.
+* **Injection:** `setUsers(data.data.data)` inside the successful promise.
+* **Result:** React dynamically controls the UI state.
 
 ### Step 4: The Loop
 I wrote the `.map()` loop manually to understand the core mechanics of rendering API arrays.
-- **Looping:** Iterated over the `users` state array.
-- **Rendering:** Returned a clean `<div className="premium-card">` for each user.
-- **Dynamic Data Injection:** Injected the nested API data directly into the HTML using JSX variables like `{user.name.first}` and `{user.picture.large}`.
+* **Looping:** Iterated over the `users` state array.
+* **Rendering:** Returned a clean `<div className="premium-card">` for each user.
+* **Dynamic Data Injection:** Injected the nested API data directly into the HTML using JSX variables like `{user.name.first}` and `{user.picture.large}`.
 
----
+***
 
 ## The Real Secret: CSS Engineering
 
 I wanted an ultra-responsive, premium dark-mode directory. Here is what makes this UI stand out:
 
-- **No Generic Colors:** Used a sleek Onyx dark palette (`#121214`) with a subtle Emerald Green hover accent.
-- **Fluid Typography:** Used the CSS `clamp()` function so fonts scale smoothly and mathematically on resize.
-- **The Grid Blowout Hack:** Used `minmax(0, 1fr)` to force the grid to mathematically obey the parent container, preventing broken mobile layouts from long text strings.
+* **No Generic Colors:** Used a sleek Onyx dark palette (`#121214`) with a subtle Emerald Green hover accent.
+* **Fluid Typography:** Used the CSS `clamp()` function so fonts scale smoothly and mathematically on resize.
+* **The Grid Blowout Hack:** Used `minmax(0, 1fr)` to force the grid to mathematically obey the parent container, preventing broken mobile layouts from long text strings.
 
 > This isn't just another API fetch project. It's a study in clean React architecture and premium CSS design.
 
----
+***
 
 ## Try it yourself
 
