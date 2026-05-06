@@ -10,7 +10,7 @@ function App() {
   const fetchUsers = async (currentPage) => {
     try {
       setLoading(true);
-      const response = await fetch(`https://api.freeapi.app/api/v1/public/randomusers?page=${currentPage}&limit=10`);
+      const response = await fetch(`https://api.freeapi.app/api/v1/public/randomusers?page=${currentPage}&limit=12`);
       const data = await response.json();
       
       // Artificial delay for smooth loading animation
