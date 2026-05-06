@@ -8,9 +8,9 @@
 
 That was fine in 2024. But in 2026, building a generic UI isn't enough. You need to build something that feels alive. Something that looks premium from the very first click.
 
-This is the **Global Network Directory**. Built for the MasterJi Web Dev Cohort 2026, using the FreeAPI Random Users endpoint.
+**Welcome to Part 1 of my FreeAPI Mastery Series.** Every journey starts with a simple `fetch()`. This is the **Global Network Directory**, built for the MasterJi Web Dev Cohort 2026 using the FreeAPI Random Users endpoint.
 
-Here is exactly how I built it. Step by step.
+Here is exactly how I built my very first API integration. Step by step.
 
 ---
 
